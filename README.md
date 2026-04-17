@@ -1,10 +1,8 @@
-# Furkyyimport { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function LovePage() {
-  const [started, setStarted] = useState(false);
   const [noPos, setNoPos] = useState({ x: 50, y: 50 });
-  const audioRef = useRef(null);
 
   const moveButton = () => {
     const x = Math.random() * window.innerWidth * 0.8;
@@ -12,32 +10,11 @@ export default function LovePage() {
     setNoPos({ x, y });
   };
 
-  const startExperience = () => {
-    setStarted(true);
-
-    if (!audioRef.current) {
-      audioRef.current = new Audio("KADINIM_AUDIO_DIRECT_MP3_URL");
-      audioRef.current.loop = true;
-      audioRef.current.volume = 0.7;
-    }
-
-    audioRef.current.play().catch(() => {
-      // blocked by browser if not allowed
-    });
-  };
-
-  if (!started) {
-    return (
-      <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 to-red-300">
-        <button
-          onClick={startExperience}
-          className="px-8 py-4 bg-white text-pink-600 font-bold rounded-2xl shadow-xl hover:scale-105 transition"
-        >
-          💖 Hikayeyi Başlat
-        </button>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const audio = new Audio("https://www.mfiles.co.uk/mp3-downloads/gs-cd-track2.mp3");
+    audio.loop = true;
+    audio.play().catch(() => {});
+  }, []);
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-pink-200 to-red-300 overflow-hidden">
@@ -47,7 +24,6 @@ export default function LovePage() {
         className="max-w-xl bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-xl"
       >
         <h1 className="text-2xl font-bold mb-4">💖</h1>
-
         <p className="text-lg leading-relaxed">
           Seninle geçirdiğim her an, hayatımın en güzel hikayesine dönüşüyor.
           Bu hikayenin her sayfasını seninle el ele, aynı heyecanla yazmaya devam etmek istiyorum.
