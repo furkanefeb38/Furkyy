@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Bir Mesajım Var</title>
-
     <style>
         body {
             margin: 0;
@@ -15,15 +14,16 @@
             min-height: 100vh;
             background: radial-gradient(circle, #fff5f5 0%, #fed7e2 100%);
             font-family: 'Times New Roman', Times, serif;
+            color: #2d3436;
             overflow: hidden;
         }
 
         .container {
             text-align: center;
             padding: 50px;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             max-width: 550px;
             position: relative;
             z-index: 2;
@@ -41,7 +41,6 @@
             line-height: 1.8;
             margin-bottom: 40px;
             font-style: italic;
-            min-height: 120px;
         }
 
         .heart-icon {
@@ -61,11 +60,11 @@
 
         button {
             padding: 15px 40px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
             font-weight: bold;
         }
 
@@ -83,21 +82,6 @@
             background-color: #636e72;
             color: white;
             position: relative;
-            transition: top 0.2s ease, left 0.2s ease;
-        }
-
-        .heart {
-            position: fixed;
-            bottom: -20px;
-            font-size: 18px;
-            animation: floatUp 6s linear forwards;
-            opacity: 0.7;
-            z-index: 0;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0.7; }
-            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
         }
 
         #music-status {
@@ -107,97 +91,102 @@
             font-size: 0.8rem;
             color: #b2bec3;
         }
+
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.5);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
-
 <body onclick="playMusic()">
 
-<iframe id="youtubePlayer" width="0" height="0"
-        src="https://www.youtube.com/embed/S6z70vH5iI8?enablejsapi=1"
-        frameborder="0" allow="autoplay"></iframe>
+    <iframe id="youtubePlayer" width="0" height="0" src="https://www.youtube.com/embed/S6z70vH5iI8?enablejsapi=1" frameborder="0" allow="autoplay"></iframe>
 
-<div class="container">
-    <span class="heart-icon">❦</span>
-    <h1>Sana Bir Notum Var...</h1>
+    <div class="container">
+        <span class="heart-icon">❦</span>
+        <h1>Sana Bir Notum Var...</h1>
+        
+        <div class="text-content">
+            "Seninle geçirdiğim her an, hayatımın en güzel hikayesine dönüşüyor. Bu hikayenin her sayfasını seninle el ele, aynı heyecanla yazmaya devam etmek istiyorum. Benim için çok özelsin. Bir süredir beraberiz ve ben senin yanındayken kendimi hiç olmadığım kadar mutlu hissediyorum. Hayatımı seninle paylaşmak, seninle bir (biz) olmak beni çok mutlu eder. "
+            <br><br>
+            <strong>Benimle sevgili olur musun?</strong> <br>
+            Kalbimde senin için ayırdığım o en güzel yerde, sonsuza dek beraber olalım mı?
+        </div>
 
-    <div class="text-content" id="text">
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">EVET!</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">YOOOOOK</button>
+        </div>
     </div>
 
-    <div class="buttons">
-        <button id="yesBtn" onclick="celebrate()">EVET!</button>
-        <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()">YOOOOOK</button>
-    </div>
-</div>
+    <div id="music-status">Sayfaya dokunarak müziği başlatabilirsin...</div>
 
-<div id="music-status">Sayfaya dokunarak müziği başlatabilirsin...</div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        let musicStarted = false;
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+        function playMusic() {
+            if (!musicStarted) {
+                const player = document.getElementById('youtubePlayer');
+                player.src = "https://www.youtube.com/embed/S6z70vH5iI8?autoplay=1&enablejsapi=1";
+                musicStarted = true;
+                document.getElementById('music-status').innerText = "🎵 Tanju Okan - Kadınım çalıyor...";
+            }
+        }
 
-<script>
-let musicStarted = false;
+        function celebrate() {
+            confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 }
+            });
+            
+            document.querySelector('.text-content').innerHTML =
+            "<h1>Seni Çok Seviyorum! ❤️</h1><p>Bu hikaye artık bizim… ve ben her sayfasını seninle yazmak istiyorum.</p>";
+            document.querySelector('.buttons').style.display = 'none';
+        }
 
-// Typing effect
-const message = `"Seninle geçirdiğim her an, hayatımın en güzel hikayesine dönüşüyor. Bu hikayeyi seninle yazmak istiyorum. Yanımda olduğun her an daha anlamlı..."
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            const maxX = window.innerWidth - btn.offsetWidth;
+            const maxY = window.innerHeight - btn.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
 
-Benim için çok özelsin. Birlikte güzel bir "biz" olalım.`;
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+            document.body.appendChild(heart);
 
-let i = 0;
-function typeWriter() {
-    if (i < message.length) {
-        document.getElementById("text").innerHTML += message.charAt(i);
-        i++;
-        setTimeout(typeWriter, 25);
-    }
-}
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
 
-function playMusic() {
-    if (!musicStarted) {
-        document.getElementById('youtubePlayer').src = 
-        "https://www.youtube.com/embed/S6z70vH5iI8?autoplay=1&enablejsapi=1";
-        musicStarted = true;
-        document.getElementById('music-status').innerText = "🎵 Tanju Okan - Kadınım çalıyor...";
-    }
-}
-
-function celebrate() {
-    confetti({ particleCount: 250, spread: 120, origin: { y: 0.6 } });
-
-    document.getElementById("text").innerHTML =
-        "<h2>Seni Çok Seviyorum ❤️</h2><p>Bu hikaye artık bizim.</p>";
-
-    document.querySelector('.buttons').style.display = 'none';
-}
-
-function moveButton() {
-    const btn = document.getElementById('noBtn');
-    const margin = 20;
-    const maxX = window.innerWidth - btn.offsetWidth - margin;
-    const maxY = window.innerHeight - btn.offsetHeight - margin;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    btn.style.position = 'fixed';
-    btn.style.left = x + 'px';
-    btn.style.top = y + 'px';
-}
-
-function createHearts() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerText = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 7000);
-}
-
-setInterval(createHearts, 900);
-
-// start typing on load
-window.onload = typeWriter;
-</script>
-
+        setInterval(createHearts, 500);
+    </script>
 </body>
 </html>
