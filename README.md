@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function LovePage() {
@@ -9,12 +9,6 @@ export default function LovePage() {
     const y = Math.random() * window.innerHeight * 0.8;
     setNoPos({ x, y });
   };
-
-  useEffect(() => {
-    const audio = new Audio("https://www.mfiles.co.uk/mp3-downloads/gs-cd-track2.mp3");
-    audio.loop = true;
-    audio.play().catch(() => {});
-  }, []);
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-pink-200 to-red-300 overflow-hidden">
