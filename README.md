@@ -121,7 +121,7 @@
         <h1>Sana Bir Notum Var...</h1>
         
         <div class="text-content">
-            "Seninle geçirdiğim her an, hayatımın en güzel hikayesine dönüşüyor. Bu hikayenin her sayfasını seninle el ele, aynı heyecanla yazmaya devam etmek istiyorum. Benim için çok özelsin. Bir süredir beraberiz ve ben senin yanındayken kendimi hiç olmadığım kadar mutlu hissediyorum. Hayatımı seninle paylaşmak, seninle bir (biz) olmak beni çok mutlu eder. "
+            "Seninle geçirdiğim her an, hayatımın en güzel hikayesine dönüşüyor. Bu hikayenin her sayfasını seninle el ele, aynı heyecanla yazmaya devam etmek istiyorum. Benim için çok özelsin. Bir süredir beraberiz ve ben senin yanındayken kendimi hiç olmadığım kadar mutlu hissediyorum. Hayatımı seninle paylaşmak, seninle bir (biz) olmak beni çok mutlu eder.  Benimle sevgili olur musun. Kalbimde senin için ayırdığım o en güzel yerde, sonsuza dek beraber olalım mı? "
             <br><br>
             <strong>Benimle sevgili olur musun?</strong> <br>
             Kalbimde senin için ayırdığım o en güzel yerde, sonsuza dek beraber olalım mı?
